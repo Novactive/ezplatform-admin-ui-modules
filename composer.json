@@ -20,7 +20,8 @@
     "_ezplatform_branch_for_behat_tests": "master",
     "branch-alias": {
       "dev-master": "1.5.x-dev",
-      "dev-tmp_ci_branch": "1.5.x-dev"
+      "dev-tmp_ci_branch": "1.5.x-dev",
+      "dev-feature/add-module-simple-list-content": "1.5.x-dev"
     }
   }
 }
