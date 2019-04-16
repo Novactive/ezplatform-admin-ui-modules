@@ -7,6 +7,8 @@ import ItemsListComponent from './components/items-list/items.list.component.js'
 import NoItemsComponent from './components/no-items/no.items.component.js';
 import Icon from '../common/icon/icon.js';
 
+const ACTIVE_VIEW_LOCAL_STORAGE_DATA_KEY = 'common-items_active_view';
+const DEFAULT_ACTIVE_VIEW = 'table';
 
 export default class CommonItemsModule extends Component {
     constructor(props) {
@@ -17,8 +19,9 @@ export default class CommonItemsModule extends Component {
 
         this._refListViewWrapper = React.createRef();
 
+
         this.state = {
-            activeView: props.activeView,
+            activeView: this.getActiveViewFromLocalStorage(),
             activePageItems: props.items,
             contentTypesMap: props.contentTypesMap,
             totalCount: props.totalCount,
@@ -33,15 +36,32 @@ export default class CommonItemsModule extends Component {
         }));
     }
 
+    getActiveViewFromLocalStorage() {
+        const activeViewData = localStorage.getItem(ACTIVE_VIEW_LOCAL_STORAGE_DATA_KEY);
+
+        return activeViewData ? JSON.parse(activeViewData) : DEFAULT_ACTIVE_VIEW;
+    }
+
+    setActiveViewInLocalStorage() {
+        const activeViewData = JSON.stringify(this.state.activeView);
+
+        localStorage.setItem(ACTIVE_VIEW_LOCAL_STORAGE_DATA_KEY, activeViewData);
+    }
+
     /**
      * Switches active view
      *
      * @method switchView
      * @param {String} activeView
-     * @memberof SubItemsModule
      */
     switchView(activeView) {
-        this.setState(() => ({ activeView }));
+        this.setState(() => (
+            {
+                activeView: activeView
+            }
+        ),
+            this.setActiveViewInLocalStorage
+        );
     }
 
     changePage(pageIndex) {
@@ -142,7 +162,6 @@ CommonItemsModule.propTypes = {
 };
 
 CommonItemsModule.defaultProps = {
-    activeView: 'table',
     items: [],
     contentTypesMap: {},
     totalCount: 0,
