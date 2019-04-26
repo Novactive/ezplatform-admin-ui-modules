@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     entry: {
         SubItems: './src/modules/sub-items/sub.items.module.js',
+        CommonItems: './src/modules/common-items/common-items.module.js',
         UniversalDiscovery: './src/modules/universal-discovery/universal.discovery.module.js',
         MultiFileUpload: './src/modules/multi-file-upload/multi.file.upload.module.js',
         ContentTree: './src/modules/content-tree/content.tree.module.js',
