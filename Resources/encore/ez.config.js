@@ -8,6 +8,7 @@ module.exports = (Encore) => {
 			path.resolve(__dirname, '../../src/modules/multi-file-upload/multi.file.upload.module.js'),
 		])
 		.addEntry('ezplatform-admin-ui-modules-subitems-js', [path.resolve(__dirname, '../../src/modules/sub-items/sub.items.module.js')])
+		.addEntry('ezplatform-admin-ui-modules-common-items-js', [path.resolve(__dirname, '../../src/modules/common-items/common-items.module.js')])
 		.addEntry('ezplatform-admin-ui-modules-content-tree-js', [
 			path.resolve(__dirname, '../../src/modules/content-tree/content.tree.module.js'),
 		]);
